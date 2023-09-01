@@ -55,6 +55,8 @@ case "01:00:0C":
 	fmt.Println("**Cisco Multicast Address used by STP to send BPDUs**")
 case "01:80:C2":
 	fmt.Println("**Cisco Multicast Address used by STP to send BPDUs**")	
+case "CF:00:00":
+	fmt.Println("**Multicast Reserved by IANA for Point-to-Point Protocol (PPP) or when vendors don't need an IEEE-assigned OUI**")
 default:
 	fmt.Printf("No manufacturer found for MAC address %s\n", macAddress)
 }
@@ -81,15 +83,15 @@ func main() {
 			fmt.Println("--------------------------------------------------------------------------------")
 			ip, _ := ipLayer.(*layers.IPv4)
 			// Examples of data available
-			fmt.Println("IP Header length in 32-bit word:", ip.IHL)
-			fmt.Println("IP TOS:", ip.TOS)
-			fmt.Println("IP Length:", ip.Length)
-			fmt.Println("IP Id:", ip.Id)
-			fmt.Println("IP Flags:", ip.Flags)
-			fmt.Println("IP FragOffset:", ip.FragOffset)
-			fmt.Println("IP TTL:", ip.TTL)
-			fmt.Println("IP Protocol:", ip.Protocol)
-			fmt.Println("IP Checksum:", ip.Checksum)
+			// fmt.Println("IP Header length in 32-bit word:", ip.IHL)
+			// fmt.Println("IP TOS:", ip.TOS)
+			// fmt.Println("IP Length:", ip.Length)
+			// fmt.Println("IP Id:", ip.Id)
+			// fmt.Println("IP Flags:", ip.Flags)
+			// fmt.Println("IP FragOffset:", ip.FragOffset)
+			// fmt.Println("IP TTL:", ip.TTL)
+			// fmt.Println("IP Protocol:", ip.Protocol)
+			// fmt.Println("IP Checksum:", ip.Checksum)
 			// Ip Addresses
 			fmt.Println("Source IP:", ip.SrcIP)
 			fmt.Println("Destination IP:", ip.DstIP)
@@ -101,7 +103,6 @@ func main() {
 		ethLayer := packet.Layer(layers.LayerTypeEthernet)
 		if ethLayer != nil {
 			ethPacket, _ := ethLayer.(*layers.Ethernet)
-
 			fmt.Println("Source MAC:", ethPacket.SrcMAC)
 			FindManufacturer(ethPacket.SrcMAC.String())
 			fmt.Println("Destination MAC:", ethPacket.DstMAC)
