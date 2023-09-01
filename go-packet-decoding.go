@@ -3,12 +3,18 @@ package main
 import (
    "fmt"
    "log"
+   "os"
+   "bufio"
+   "strings"
    "github.com/google/gopacket"
    "github.com/google/gopacket/pcap"
    "github.com/google/gopacket/layers"
 )
 
 func main() {
+	// Open manufacturer OUI file
+
+
    // Open device for capturing packets
    handle, err := pcap.OpenLive("eth0", 1600, true, pcap.BlockForever)
    if err != nil {
